@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+
+const { Entangle } = require('../lib');
+
+const entangle = new Entangle(process.cwd());
+
+entangle.watch();

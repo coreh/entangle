@@ -1,0 +1,11 @@
+{
+    "name": "entangle",
+    "version": "1.0.0",
+    "dependencies": {
+        "node-watch": "^0.5.7",
+        "vscode-ripgrep": "^0.7.1-patch.1.5"
+    },
+    "bin": {
+        "entangle": "./bin/entangle"
+    }
+}
