@@ -1,5 +1,7 @@
 # entangle(1)
 
+![](https://imgur.com/xXgvP2i.gif)
+
 ## Description
 
 `entangle(1)` is a tool for synchronizing source code lines across files in a project. It uses emoji as metasyntactic markers to delimit ‘entangled’ regions of source code, which it then keeps synchronized.
