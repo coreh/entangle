@@ -24,5 +24,6 @@ class UserAccount_Balance extends UserAccount {
         assert(this.balance - amount >= 0, 'Not enough balance');
         this.balance -= amount;
     }
+
     // #endregion 🔨
 }

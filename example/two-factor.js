@@ -19,5 +19,6 @@ class UserAccount_TwoFactor extends UserAccount {
     verifyTwoFactor(code) {
         return tfa.verify(this.twoFactorSecret, code);
     }
+
     // #endregion 🔨
 }

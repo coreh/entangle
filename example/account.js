@@ -18,13 +18,15 @@ export class UserAccount {
     credit(amount) {
         this.balance += amount;
     }
-    
+
     debit(amount) {
         assert(this.balance - amount >= 0, 'Not enough balance');
         this.balance -= amount;
     }
+
     verifyTwoFactor(code) {
         return tfa.verify(this.twoFactorSecret, code);
     }
+
     // #endregion 🚧
 }
