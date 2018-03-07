@@ -19,20 +19,23 @@ entangle.on('run', (stats) => {
         return;
     }
 
-    if (program.watch) {
+    if (program.watch && process.stdout.isTTY) {
         readline.clearLine(process.stdout);
         readline.cursorTo(process.stdout, 0, null);
-        process.stdout.write('(Watching) ');
     }
 
     process.stdout.write(`Synced ${stats.lineCount} lines (${stats.hunkCount} hunks) across ${stats.fileCount} files in ${stats.endTime - stats.startTime} ms`);
 
-    if (!program.watch) {
+    if (!program.watch || !process.stdout.isTTY) {
         console.log();
     }
 });
 
 if (program.watch) {
+    if (!program.quiet) {
+        console.log('Watching for changes...');
+    }
+
     entangle.watch();
 } else {
     entangle.run();
