@@ -36,7 +36,14 @@ if (program.watch) {
         console.log('Watching for changes...');
     }
 
-    entangle.watch();
+    entangle.watch().catch(handleError);
 } else {
-    entangle.run();
+    entangle.run().catch(handleError);
+}
+
+process.on('uncaughtException', handleError);
+
+function handleError(e) {
+    console.error('Error: ' + e.message);
+    process.exit(-1);
 }
