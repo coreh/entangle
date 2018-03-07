@@ -5,13 +5,32 @@ const program = require('commander');
 
 const entangle = new Entangle(process.cwd());
 const packageJSON = require('../package.json');
-
+const readline = require('readline');
 
 program
     .description('Synchronize lines across files')
     .version(packageJSON.version, '-v, --version')
     .option('-w, --watch', 'Watch the file system for changes')
+    .option('-q, --quiet', 'Do not print stats')
     .parse(process.argv);
+
+entangle.on('run', (stats) => {
+    if (program.quiet) {
+        return;
+    }
+
+    if (program.watch) {
+        readline.clearLine(process.stdout);
+        readline.cursorTo(process.stdout, 0, null);
+        process.stdout.write('(Watching) ');
+    }
+
+    process.stdout.write(`Synced ${stats.lineCount} lines (${stats.hunkCount} hunks) across ${stats.fileCount} files in ${stats.endTime - stats.startTime} ms`);
+
+    if (!program.watch) {
+        console.log();
+    }
+});
 
 if (program.watch) {
     entangle.watch();
